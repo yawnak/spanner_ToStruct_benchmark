@@ -35,3 +35,28 @@ type BigPerson struct {
 	FavoriteElement   string  `spanner:"favorite_element"`
 }
 
+var (
+	//column names for row bigperson
+	bigRowColumnNames = []string{
+		"id", "name", "age", "weight", "is_married",
+		"extra", "driver", "height", "width", "favorite_food",
+		"favorite_color", "favorite_number", "favorite_animal",
+		"favorite_movie", "favorite_book", "favorite_song", "favorite_game",
+		"favorite_sport", "favorite_team", "favorite_band", "favorite_drink",
+		"favorite_place", "favorite_car", "favorite_shoe", "favorite_candy",
+		"favorite_ice_cream", "favorite_fruit", "favorite_vegetable",
+		"favorite_flower", "favorite_tree", "favorite_planet",
+		"favorite_element",
+	}
+	bigRowColumnValues = []interface{}{
+		1, "John", 20, 50.5, true,
+		"extra", "driver", 1, 1, "favorite_food",
+		"favorite_color", 1, "favorite_animal",
+		"favorite_movie", "favorite_book", "favorite_song", "favorite_game",
+		"favorite_sport", "favorite_team", "favorite_band", "favorite_drink",
+		"favorite_place", "favorite_car", "favorite_shoe", "favorite_candy",
+		"favorite_ice_cream", "favorite_fruit", "favorite_vegetable",
+		"favorite_flower", "favorite_tree", "favorite_planet",
+		"favorite_element",
+	}
+)
