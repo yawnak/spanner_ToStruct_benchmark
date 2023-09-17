@@ -7,3 +7,8 @@ type Person struct {
 	Weight    float64 `spanner:"weight"`
 	IsMarried bool    `spanner:"is_married"`
 }
+
+var (
+	rowColumnNames  = []string{"id", "name", "age", "weight", "is_married"}
+	rowColumnValues = []interface{}{1, "John", 20, 50.5, true}
+)
