@@ -12,22 +12,29 @@ This repository contains benchmarking tests that measure the performance of Goog
 
 ## Benchmark Results
 
-| Benchmark Test         | Operations | Time (ns/op) | Bytes Allocated (B/op) | Memory Allocations (allocs/op) |
-|------------------------|------------|--------------|-------------------------|--------------------------------|
-| BenchmarkRowToStruct   | 2763956    | 436.7        | 112                     | 6                              |
-| BenchmarkRowColumns    | 19261048   | 58.65        | 0                       | 0                              |
-| BenchmarkRowToStructBig| 167869     | 7159         | 2887                    | 36                             |
-| BenchmarkRowColumnsBig | 3732808    | 318.9        | 0                       | 0                              |
+| Benchmark Test            | Operations  | Time (ns/op) | Bytes Allocated (B/op) | Memory Allocations (allocs/op) |
+|---------------------------|-------------|--------------|-------------------------|--------------------------------|
+| BenchmarkRowToStruct-12   | 2708936     | 446.5        | 112                     | 6                              |
+| BenchmarkRowColumns-12    | 19216356    | 59.30        | 0                       | 0                              |
+| BenchmarkColumnVariadic-12| 19895943    | 60.29        | 0                       | 0                              |
+| BenchmarkRowToStructBig-12| 166470      | 7147         | 2886                    | 36                             |
+| BenchmarkRowColumnsBig-12 | 3624980     | 327.3        | 0                       | 0                              |
+| BenchmarkColumnVariadicBig-12 | 2563435  | 471.5        | 512                     | 1                              |
 
 ### Explanation of Results
 
-- **BenchmarkRowToStruct**: Benchmarking the `ToStruct` method on smaller rows.
-- **BenchmarkRowColumns**: Benchmarking the `Columns` method on smaller rows.
-- **BenchmarkRowToStructBig**: Benchmarking the `ToStruct` method on larger rows.
-- **BenchmarkRowColumnsBig**: Benchmarking the `Columns` method on larger rows.
+- **BenchmarkRowToStruct-12**: Benchmarking the `ToStruct` method on smaller rows.
+- **BenchmarkRowColumns-12**: Benchmarking the `Columns` method on smaller rows.
+- **BenchmarkColumnVariadic-12**: Benchmarking the `Columns` method with variadic inputs on smaller rows.
+- **BenchmarkRowToStructBig-12**: Benchmarking the `ToStruct` method on larger rows.
+- **BenchmarkRowColumnsBig-12**: Benchmarking the `Columns` method on larger rows.
+- **BenchmarkColumnVariadicBig-12**: Benchmarking the `Columns` method with variadic inputs on larger rows.
 
 ## Observations
 
 1. `Row.ToStruct` is considerably slower compared to `Row.Columns` and also has higher memory allocations. This suggests that `ToStruct` has a larger overhead, likely due to the use of reflection and additional memory allocations for the struct.
+  
+2. The time and memory overhead scales up as the row size increases (`BenchmarkRowToStructBig-12` vs `BenchmarkRowColumnsBig-12`).
 
-2. The time and memory overhead scales up as the row size increases (`BenchmarkRowToStructBig` vs `BenchmarkRowColumnsBig`).
+3. Adding variadic inputs to `Row.Columns` (`BenchmarkColumnVariadic-12` and `BenchmarkColumnVariadicBig-12`) has minimal impact on performance.
+
