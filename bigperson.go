@@ -35,6 +35,44 @@ type BigPerson struct {
 	FavoriteElement   string  `spanner:"favorite_element"`
 }
 
+// columns is a function that returns all colummns of a BigPerson.
+func (p *BigPerson) Columns() []interface{} {
+	return []interface{}{
+		&p.ID,
+		&p.Name,
+		&p.Age,
+		&p.Weight,
+		&p.IsMarried,
+		&p.Extra,
+		&p.Driver,
+		&p.Height,
+		&p.Width,
+		&p.FavoriteFood,
+		&p.FavoriteColor,
+		&p.FavoriteNumber,
+		&p.FavoriteAnimal,
+		&p.FavoriteMovie,
+		&p.FavoriteBook,
+		&p.FavoriteSong,
+		&p.FavoriteGame,
+		&p.FavoriteSport,
+		&p.FavoriteTeam,
+		&p.FavoriteBand,
+		&p.FavoriteDrink,
+		&p.FavoritePlace,
+		&p.FavoriteCar,
+		&p.FavoriteShoe,
+		&p.FavoriteCandy,
+		&p.FavoriteIceCream,
+		&p.FavoriteFruit,
+		&p.FavoriteVegetable,
+		&p.FavoriteFlower,
+		&p.FavoriteTree,
+		&p.FavoritePlanet,
+		&p.FavoriteElement,
+	}
+}
+
 var (
 	//column names for row bigperson
 	bigRowColumnNames = []string{
